@@ -48,7 +48,43 @@ Both functions out the resulting figure and axes objects for further editing if 
 
 ## Bancroft multilateration
 The Bancroft method uses linear algerba to obtain a direct solution of the source/reciever position (and clock offset), without the need for 
-any priori knowledge of source/reciever location [1].
+any priori knowledge of source/reciever location [1]. A quick and efficient algorithm to find a souce location from 4+ satellites using psuedorange matrix of satellites. The code can be adapted to account for fewer recievers. Mathematical derivation found here: https://gssc.esa.int/navipedia/index.php/ 
+
+**NOTE: calculation here does not include ionospheric and tropospheric terms and assumes the emission is emitted isotropically. The location calulated can be made frequency dependent if you specify times at a certain frequency**
+
+The Bancroft algorithm here is adaped from code provided by 10GeV: https://codereview.stackexchange.com/questions/253982/bancrofts-method-implementation and can be accesed using:
+
+```shell
+python bcroft.py
+```
+
+The function ```tdoa_ban``` is inisde this script and utilises the 4x4 Minkowski matrix <code>diag(1,1,1,-1)</code> and <a href="https://mathworld.wolfram.com/LorentzianInnerProduct.html">Lorentz Inner product</a> to calculate the positions.
+
+**Inputs:**
+<ul>
+  <li> <code>stations_pos</code> : <b>array of N elements of shape (1, 3)</b>; where N >= 4 is the number of recievers (x,y,z) coordinates of satellite/reciever positions. Units of R_sun </li>.
+  <li> <code>alpha</code>: <b>scalar</b>; scaling used to adapt speed of light <code>(2.99792458e8/sol_2_m)*alpha</code>. Speed in units of R_sun/s </li>
+  <li> <code>tdoa</code>: <b>array of length (1,n) </b>; Array of determiend TDOAs to be used for Bancroft algorithm in units of seconds.
+</ul>
+
+**Outputs:**
+
+<code>Vertexer</code> class used to calculate Bancroft location of source. Creates a class once the matrix equation has been solved. 'Vertexer' class first used to find:
+<ol> 
+  <li>Solve Bancroft formulation using N satelite geometry of the form  (for N >= 4):
+                
+   <code> [variable] = Vertexer(np.array([[x_1, y_1, z_1],[x_2, y_2, z_2],[x_3, y_3,z_3], [x_4, y_4,z_4],...,[x_N, y_N, z_N]]))</code>
+                  </li>
+  <li>Inset given TDOA to establish source location:
+    
+    [variable].find(np.array([[t_1], [t_2], [t_3], [t_4],...,[t_N]]))
+  </li>
+</ol>
+Using these, the final output is the location of the source. Algorithm produces 2 solutions: correct/most optimum solution ia taken to be one of the smallest Residiual sum of squares (RSS) error.
+
+<sub>**Authors:** Dale Weigt, Shane Maloney, Alberto Canizares, Sophie Murray, Peter Gallagher</sub>
+
+
 ## Requirements
 
 ### References
