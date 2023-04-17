@@ -25,10 +25,31 @@ python gdop.py
 
 Note: GDOP values > 20 are considered to be regions of high uncertainty and should be eliminated from further analysis
 
+The GDOP values can be plotted onto the grid using:
+
+```shell
+python gdop_plot.py
+```
+
+This script contains two functions for plotting:
+
+<ol>
+  <li> <code>gdop2D_plotter</code>: plot GDOP unitless values from given satellite positions used in <code>gdop2D</code> function </li>
+  <li> <code>gdop2D_unc</code>: plot errors in location in terms of total radial uncertianty from GDOP (assuming spherical symmetry) and time cadence of the observations given statellite positions used in <code>gdop2D</code> function </li>   
+</ol>
+
 <sub>**Authors:** Dale Weigt, Shane Maloney, Alberto Canizares, Sophie Murray, Peter Gallagher</sub>
 
+Both require the same scaling used for the initial grid to compute the GDOP values, the resulting array of GDOPs and the satellite positions used. **NOTE: the plotting tool assumes that the grd is square, i.e. <code>nx = ny</code>**
 
+<code>gdop2D_unc</code> also require inputs <code>prop_v</code> (propagation velocity of the source) and <code>delta_t</code> (time cadence of observations) to compute the total uncertainty at each grid point.
+
+Both functions out the resulting figure and axes objects for further editing if required. ```gdop2D_unc``` also provides an array of the total uncertainty calulated at each point: ```zvals_r```.
 
 ## Requirements
 
+### References
+<ul>
+  <li></li>
+</ul>
 
