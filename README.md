@@ -1,5 +1,6 @@
 # MultiLatPy
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![DOI](https://zenodo.org/badge/629036694.svg)](https://zenodo.org/badge/latestdoi/629036694)
 
 This package contains the Python tools/algorithms to perform and/or aid multilateration techniques of their choice. These methods are purely algerbraic and only require the spacecraft positions used for analysis (as long as each position is in the same corrdinate system) and the Time Differnce of Arrival (TODA) for each reciever. The code is set up to process and compute the estimated position of a source using the Bancroft (bcroft) Method - one of many different techniques and provide useful aids (such as the Geometric Dilution of Precision or GDOP) to elimate regions of high uncertainty which will likely provide erroneous results.
 
