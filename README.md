@@ -38,18 +38,21 @@ This script contains two functions for plotting:
   <li> <code>gdop2D_unc</code>: plot errors in location in terms of total radial uncertianty from GDOP (assuming spherical symmetry) and time cadence of the observations given statellite positions used in <code>gdop2D</code> function </li>   
 </ol>
 
-<sub>**Authors:** Dale Weigt, Shane Maloney, Alberto Canizares, Sophie Murray, Peter Gallagher</sub>
-
 Both require the same scaling used for the initial grid to compute the GDOP values, the resulting array of GDOPs and the satellite positions used. **NOTE: the plotting tool assumes that the grd is square, i.e. <code>nx = ny</code>**
 
 <code>gdop2D_unc</code> also require inputs <code>prop_v</code> (propagation velocity of the source) and <code>delta_t</code> (time cadence of observations) to compute the total uncertainty at each grid point.
 
 Both functions out the resulting figure and axes objects for further editing if required. ```gdop2D_unc``` also provides an array of the total uncertainty calulated at each point: ```zvals_r```.
 
+<sub>**Authors:** Dale Weigt, Shane Maloney, Alberto Canizares, Sophie Murray, Peter Gallagher</sub>
+
+## Bancroft multilateration
+The Bancroft method uses linear algerba to obtain a direct solution of the source/reciever position (and clock offset), without the need for 
+any priori knowledge of source/reciever location [1].
 ## Requirements
 
 ### References
 <ul>
-  <li></li>
+  <li> [1] Bancroft, S. (1985), <i> An Algebraic Solution of the GPS Equations </i>, IEEE Transactions on Aerospace Electronic Systems, <b>21</b>, 1, 56-59, doi: <a href="https://ieeexplore.ieee.org/document/4104017">10.1109/TAES.1985.310538</a> </li>
 </ul>
 
