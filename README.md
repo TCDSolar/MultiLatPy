@@ -84,6 +84,15 @@ Using these, the final output is the location of the source. Algorithm produces 
 
 The output is therefore the position of the source in (x,y,z) coordinates in the system used for the satellite positions. In units of Rsun.
 
+The remaining 'bcroft' files consisit of unit tests to evaluate the accuracy of ```tdoa_ban```:
+
+<ol>
+  <li><code>bcroft_static_test.py</code>: evaluates accuracy of algorithm using various source/satellite positions. No noise is added to TDOAs </li>
+  <li><code>bcroft_sc_noise_test.py</code> and <code>bcroft_source_noise_test.py</code>: identical to previous test must adds Gaussian noise of varying degrees to the calculated TDOAs
+ </ol>
+
+All tests use <code>pytest</code> module to run.
+
 <sub>**Authors:** Dale Weigt, Shane Maloney, Alberto Canizares, Sophie Murray, Peter Gallagher</sub>
 
 
