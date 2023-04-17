@@ -82,10 +82,20 @@ The function ```tdoa_ban``` is inisde this script and utilises the 4x4 Minkowski
 </ol>
 Using these, the final output is the location of the source. Algorithm produces 2 solutions: correct/most optimum solution ia taken to be one of the smallest Residiual sum of squares (RSS) error.
 
+The output is therefore the position of the source in (x,y,z) coordinates in the system used for the satellite positions. In units of Rsun.
+
 <sub>**Authors:** Dale Weigt, Shane Maloney, Alberto Canizares, Sophie Murray, Peter Gallagher</sub>
 
 
 ## Requirements
+<ul>
+  <li><b>python 3.9.13</b></li>
+  <li>dataclasses</li>
+  <li>matplotlib 3.5.2</li>
+  <li>numpy 1.23.1</li>
+  <li>pandas 1.4.3</li> 
+  <li>pytest 7.1.2</li>
+</ul>
 
 ### References
 <ul>
